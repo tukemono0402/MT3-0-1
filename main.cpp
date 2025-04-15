@@ -64,7 +64,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 		Vector3 resultMultiply = Mul(k, v1);
 		float resultDot = Dot(v1, v2);
 		float resrultLength = Length(v1);
-		Vector3 resultNormalize = Normalize(v1);
+		Vector3 resultNormalize = Normalize(v2);
 
 
 		///
@@ -117,11 +117,11 @@ float Length(const Vector3& v) {
 	return sqrtf(v.x * v.x + v.y * v.y + v.z * v.z);
 }
 Vector3 Normalize(const Vector3& v) {
-	float length = Length(v);
-	if (length == 0.0f) {
-		return Vector3(0.0f, 0.0f, 0.0f);
-	}
-	return Vector3(v.x / length, v.y / length, v.z / length);
+	Vector3 result;
+	result.x = v.x / sqrtf(v.x * v.x + v.y * v.y + v.z * v.z);
+	result.y = v.y / sqrtf(v.x * v.x + v.y * v.y + v.z * v.z);
+	result.z = v.z / sqrtf(v.x * v.x + v.y * v.y + v.z * v.z);
+	return result;
 }
 
 
